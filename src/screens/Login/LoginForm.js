@@ -1,13 +1,24 @@
 import React from 'react';
-import {Button, TextInput, View} from 'react-native';
+import {Button, TextInput, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import {generalStyles} from './../../styles/General.style';
+import * as Yup from 'yup';
+
+const initialValues = {email: '', password: ''};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required('Required'),
+  password: Yup.string().required('Required'),
+});
 
 const LoginForm = ({onSubmitForm}) => {
   return (
     <View style={generalStyles.form}>
-      <Formik initialValues={{email: ''}} onSubmit={onSubmitForm}>
-        {({handleChange, handleBlur, handleSubmit, values}) => (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmitForm}>
+        {({handleChange, handleBlur, handleSubmit, errors, values}) => (
           <>
             <View style={generalStyles.formRow}>
               <TextInput
@@ -17,6 +28,7 @@ const LoginForm = ({onSubmitForm}) => {
                 onBlur={handleBlur('email')}
                 value={values.email}
               />
+              <Text style={{color: 'red'}}>{errors.email}</Text>
             </View>
             <View style={generalStyles.formRow}>
               <TextInput
@@ -26,6 +38,7 @@ const LoginForm = ({onSubmitForm}) => {
                 onBlur={handleBlur('password')}
                 value={values.password}
               />
+              <Text style={{color: 'red'}}>{errors.password}</Text>
             </View>
             <View>
               <Button onPress={handleSubmit} title="Login" />

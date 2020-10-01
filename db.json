@@ -12,6 +12,19 @@
       "zip": "11111",
       "repassword": "Puerta164ever!",
       "id": 1
+    },
+    {
+      "email": "werwer@werwer.com",
+      "password": "$2a$10$I5Harm53XpeH/T6KN3pSVe2uqubCWU7BXOdgRyifi2CLLckuPSY5W",
+      "username": "eerw",
+      "name": "werwer",
+      "surname": "ewrwer",
+      "address": "werwer",
+      "city": "werwer",
+      "state": "werwer",
+      "zip": "34567",
+      "repassword": "Puerta164ever!",
+      "id": 2
     }
   ],
   "products": [

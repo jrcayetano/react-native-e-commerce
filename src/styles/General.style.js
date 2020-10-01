@@ -5,7 +5,7 @@ export const generalStyles = StyleSheet.create({
     borderBottomWidth: 0.2,
   },
   form: {
-    width: '90%',
+    width: '100%',
     backgroundColor: 'white',
     padding: 30,
     borderWidth: 0.2,
