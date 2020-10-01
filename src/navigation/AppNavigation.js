@@ -6,7 +6,8 @@ import Welcome from './../screens/Welcome';
 import Register from './../screens/Register';
 import Products from '../screens/Products';
 import {connect} from 'react-redux';
-import {Text} from 'react-native';
+import {Text, Button} from 'react-native';
+import HeaderButtons from './../components/HeaderButtons';
 
 const Stack = createStackNavigator();
 
@@ -23,7 +24,14 @@ const AppNavigation = ({isLogged}) => {
               <Stack.Screen name="register" component={Register} />
             </>
           ) : (
-            <Stack.Screen name="products" component={Products} />
+            <Stack.Screen
+              name="products"
+              component={Products}
+              options={{
+                headerTitle: 'Products',
+                headerRight: () => <HeaderButtons />,
+              }}
+            />
           )}
         </Stack.Navigator>
       </NavigationContainer>

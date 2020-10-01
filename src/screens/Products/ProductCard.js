@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {productCardStyle} from './../../styles/ProductCard.style';
+import Rating from './Rating';
 const ProductCard = ({product}) => {
   const elipsis = (text) => {
     if (text) {
@@ -35,7 +36,7 @@ const ProductCard = ({product}) => {
           </Text>
         </View>
         <View style={[productCardStyle.rating, productCardStyle.spacing]}>
-          {/** component stars */}
+          <Rating rating={product.rating} />
           <View>
             <Text style={productCardStyle.reviews}>
               {product?.reviews.length}

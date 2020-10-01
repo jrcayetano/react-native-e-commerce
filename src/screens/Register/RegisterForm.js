@@ -143,8 +143,6 @@ const RegisterForm = ({states, onSubmitForm}) => {
                       key={`picker_${index}`}
                     />
                   ))}
-
-                <Picker.Item label="JavaScript" value="js" />
               </Picker>
               {((errors.state && touched.state) || submitted) && (
                 <Text style={{color: 'red'}}>{errors.state}</Text>
@@ -157,6 +155,7 @@ const RegisterForm = ({states, onSubmitForm}) => {
                 onChangeText={handleChange('zip')}
                 onBlur={handleBlur('zip')}
                 value={values.zip}
+                keyboardType={'numeric'}
               />
               {((errors.zip && touched.zip) || submitted) && (
                 <Text style={{color: 'red'}}>{errors.zip}</Text>

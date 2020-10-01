@@ -16,4 +16,9 @@ export const generalStyles = StyleSheet.create({
   formRow: {
     marginBottom: 20,
   },
+  labeledField: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 });
