@@ -39,7 +39,7 @@ const validationSchema = Yup.object().shape({
 
 const RegisterForm = ({states, onSubmitForm}) => {
   const [submitted, setSubmitted] = useState(false);
-
+  const [state, setState] = useState(false);
   return (
     <View style={generalStyles.form}>
       <Formik
@@ -53,6 +53,7 @@ const RegisterForm = ({states, onSubmitForm}) => {
           errors,
           touched,
           values,
+          setFieldValue,
         }) => (
           <>
             <View style={generalStyles.formRow}>
@@ -128,20 +129,12 @@ const RegisterForm = ({states, onSubmitForm}) => {
               )}
             </View>
             <View style={generalStyles.formRow}>
-              {/* <TextInput
-                style={generalStyles.input}
-                placeholder="state"
-                onChangeText={handleChange('state')}
-                onBlur={handleBlur('state')}
-                value={values.state}
-              /> */}
               <Picker
                 selectedValue={values.state}
                 style={{height: 50, width: '100%'}}
-                onValueChange={
-                  (itemValue, itemIndex) => {} // alert(itemValue)
-                  // this.setState({language: itemValue})
-                }>
+                onValueChange={(itemValue, itemIndex) => {
+                  setFieldValue('state', itemValue);
+                }}>
                 {states &&
                   states.map((state, index) => (
                     <Picker.Item
