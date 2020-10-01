@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {productCardStyle} from './../../styles/ProductCard.style';
+import {generalStyles} from './../../styles/General.style';
 import Rating from './Rating';
 const ProductCard = ({product}) => {
   const elipsis = (text) => {
@@ -35,10 +36,15 @@ const ProductCard = ({product}) => {
             {product?.description}
           </Text>
         </View>
-        <View style={[productCardStyle.rating, productCardStyle.spacing]}>
+        <View
+          style={[
+            productCardStyle.rating,
+            productCardStyle.spacing,
+            generalStyles.labeledField,
+          ]}>
           <Rating rating={product.rating} />
           <View>
-            <Text style={productCardStyle.reviews}>
+            <Text style={[productCardStyle.reviews, {marginLeft: 10}]}>
               {product?.reviews.length}
             </Text>
           </View>
