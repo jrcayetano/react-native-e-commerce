@@ -23,8 +23,9 @@ const ProductCard = ({product}) => {
       </View>
       <View style={[productCardStyle.imageContainer, productCardStyle.spacing]}>
         <Image
+          resizeMode={'contain'}
           style={[productCardStyle.image, productCardStyle.tinyLogo]}
-          source={require('./no-image.png')}
+          source={{uri: product.image}}
         />
       </View>
       <View style={productCardStyle.info}>

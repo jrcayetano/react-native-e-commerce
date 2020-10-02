@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import colorsApp from './Colors';
 
 export const generalStyles = StyleSheet.create({
   input: {
@@ -20,5 +21,28 @@ export const generalStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+
+  btnPrimary: {
+    backgroundColor: colorsApp.COLOR_PRIMARY,
+    borderColor: colorsApp.COLOR_PRIMARY,
+    textAlign: 'center',
+    borderRadius: 15,
+    paddingTop: 0.3,
+    paddingBottom: 0.3,
+    paddingLeft: 0.7,
+    paddingRight: 0.7,
+  },
+
+  btnSecondary: {
+    backgroundColor: colorsApp.COLOR_SECONDARY,
+    borderColor: colorsApp.COLOR_SECONDARY,
+    color: 'white',
+    textAlign: 'center',
+    borderRadius: 15,
+    paddingTop: 0.3,
+    paddingBottom: 0.3,
+    paddingLeft: 0.7,
+    paddingRight: 0.7,
   },
 });

@@ -6,8 +6,9 @@ export const productCardStyle = StyleSheet.create({
   productCard: {
     backgroundColor: 'white',
     // borderWidth: 0.5,
-    width: '80%',
-    marginBottom: 50,
+    width: '100%',
+    marginBottom: 10,
+    padding: '15%',
   },
   badge: {
     alignItems: 'center',
@@ -22,8 +23,8 @@ export const productCardStyle = StyleSheet.create({
     paddingRight: 10,
   },
   tinyLogo: {
-    width: '100%',
-    height: 100,
+    width: 200,
+    height: 200,
   },
   imageContainer: {
     alignItems: 'center',

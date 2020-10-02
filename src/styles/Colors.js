@@ -14,6 +14,8 @@ const colorsApp = {
   COLOR_STAR_RATING: '#007bff',
   COLOR_HEADER_ORDER: '#eef0f2',
   COLOR_BORDER_2: '#dee2e6',
+  COLOR_PRIMARY: '#ffc107',
+  COLOR_SECONDARY: '#6c757d',
 };
 
 export default colorsApp;

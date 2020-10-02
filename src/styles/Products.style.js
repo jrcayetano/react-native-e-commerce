@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export const productsPageStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#eaeded',
   },
   listContainer: {
     alignItems: 'center',

@@ -7,7 +7,7 @@ import ProductCard from './ProductCard';
 import FAB from './../../components/FAB';
 import ProductFilter from './ProductFilter';
 
-const Products = () => {
+const Products = ({navigation}) => {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -26,12 +26,14 @@ const Products = () => {
     setShowModal(!showModal);
   };
 
-  const handleProductPress = () => {};
+  const handleProductPress = (productId) => {
+    navigation.navigate('detail', {id: productId});
+  };
 
   const renderItem = ({item}) => (
     <TouchableOpacity
       style={productsPageStyle.touchable}
-      onPress={handleProductPress}>
+      onPress={() => handleProductPress(item.id)}>
       <ProductCard style={productsPageStyle.container} product={item} />
     </TouchableOpacity>
   );
