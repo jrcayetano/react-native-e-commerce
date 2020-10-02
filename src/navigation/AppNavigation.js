@@ -9,6 +9,7 @@ import ProductDetail from '../screens/ProductDetail/ProductDetail';
 import {connect} from 'react-redux';
 import {Text, Button} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
+import BasketList from './../screens/BasketList';
 
 const Stack = createStackNavigator();
 
@@ -33,11 +34,19 @@ const AppNavigation = ({isLogged}) => {
                   headerRight: () => <HeaderButtons />,
                 }}
               /> */}
-              <Stack.Screen
+              {/* <Stack.Screen
                 name="detail"
                 component={ProductDetail}
                 options={{
                   headerTitle: 'Detalle',
+                  headerRight: () => <HeaderButtons />,
+                }}
+              /> */}
+              <Stack.Screen
+                name="basket"
+                component={BasketList}
+                options={{
+                  headerTitle: 'Cesta',
                   headerRight: () => <HeaderButtons />,
                 }}
               />
