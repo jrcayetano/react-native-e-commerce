@@ -7,13 +7,14 @@ import Register from './../screens/Register';
 import Products from '../screens/Products';
 import ProductDetail from '../screens/ProductDetail/ProductDetail';
 import {connect} from 'react-redux';
-import {Text, Button} from 'react-native';
+import {Text, Button, View} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
 import BasketList from './../screens/BasketList';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
+  DrawerItem,
 } from '@react-navigation/drawer';
 
 const Stack = createStackNavigator();
@@ -42,24 +43,73 @@ const ProductsNav = () => {
   );
 };
 
-function CustomDrawerContent(props) {
+const CustomDrawerContent = (props) => {
   return (
-    <DrawerContentScrollView {...props}>
-      <DrawerItemList {...props} />
+    <DrawerContentScrollView
+      {...props}
+      contentContainerStyle={{flex: 1, paddingTop: 0}}>
+      <View style={{flex: 1}}>
+        <View
+          style={{
+            backgroundColor: '#4f647d',
+            height: 50,
+            paddingLeft: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{color: 'white'}}>Mi Perfil</Text>
+        </View>
+        <View>
+          <DrawerItem
+            label="Editar cuenta"
+            onPress={() => props.navigation.navigate('basket')}
+          />
+          <DrawerItem
+            label="Productos favoritos"
+            onPress={() => props.navigation.navigate('basket')}
+          />
+          <DrawerItem
+            label="Pedidos"
+            onPress={() => props.navigation.navigate('basket')}
+          />
+        </View>
+        <View
+          style={{
+            backgroundColor: '#4f647d',
+            height: 50,
+            paddingLeft: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Text style={{color: 'white'}}>Tienda</Text>
+        </View>
+        <View>
+          <DrawerItemList {...props} />
+        </View>
+      </View>
+
+      <View style={{backgroundColor: '#232f3e', color: 'white'}}>
+        <DrawerItem
+          activeTintColor={'white'}
+          inactiveTintColor={'white'}
+          label="Logout"
+          onPress={() => props.navigation.navigate('basket')}
+        />
+      </View>
     </DrawerContentScrollView>
   );
-}
+};
 
 const AppNavigation = ({isLogged}) => {
   return (
     <>
       <NavigationContainer>
-        <Drawer.Navigator>
+        <Drawer.Navigator
+          drawerContent={(props) => <CustomDrawerContent {...props} />}>
           <>
             <Drawer.Screen
               name="products"
               component={ProductsNav}
-              drawC
               options={({navigation, route}) => ({
                 headerTitle: 'Productos',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
