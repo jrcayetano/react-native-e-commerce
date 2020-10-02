@@ -7,9 +7,9 @@ const HeaderButtons = ({navigation}) => {
     navigation.navigate('basket');
   };
   return (
-    <View style={{flexDirection: 'row'}}>
+    <View style={{flexDirection: 'row', paddingRight: 20}}>
       <Basket onBasketClick={handleBasketClick} />
-      <Button onPress={() => alert('This is a button!')} title="Menu"></Button>
+      <Button onPress={() => navigation.toggleDrawer()} title="Menu"></Button>
     </View>
   );
 };

@@ -10,14 +10,74 @@ import {connect} from 'react-redux';
 import {Text, Button} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
 import BasketList from './../screens/BasketList';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItemList,
+} from '@react-navigation/drawer';
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const ProductsNav = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="products"
+        component={Products}
+        options={({navigation, route}) => ({
+          headerTitle: 'Productos',
+          headerRight: () => <HeaderButtons navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="detail"
+        component={ProductDetail}
+        options={({navigation, route}) => ({
+          headerTitle: 'Detalle',
+          headerRight: () => <HeaderButtons navigation={navigation} />,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
+function CustomDrawerContent(props) {
+  return (
+    <DrawerContentScrollView {...props}>
+      <DrawerItemList {...props} />
+    </DrawerContentScrollView>
+  );
+}
 
 const AppNavigation = ({isLogged}) => {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Drawer.Navigator>
+          <>
+            <Drawer.Screen
+              name="products"
+              component={ProductsNav}
+              drawC
+              options={({navigation, route}) => ({
+                headerTitle: 'Productos',
+                headerRight: () => <HeaderButtons navigation={navigation} />,
+              })}
+            />
+            <Drawer.Screen
+              name="basket"
+              component={BasketList}
+              options={({navigation, route}) => ({
+                headerTitle: 'Cesta',
+                headerRight: ({navigation}) => (
+                  <HeaderButtons navigation={navigation} />
+                ),
+              })}
+            />
+          </>
+        </Drawer.Navigator>
+        {/* <Stack.Navigator>
           {!isLogged ? (
             <>
               <Stack.Screen name="welcome" component={Welcome} />
@@ -54,7 +114,7 @@ const AppNavigation = ({isLogged}) => {
               />
             </>
           )}
-        </Stack.Navigator>
+        </Stack.Navigator> */}
       </NavigationContainer>
     </>
   );

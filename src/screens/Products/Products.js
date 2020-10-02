@@ -40,7 +40,6 @@ const Products = ({navigation}) => {
 
   return (
     <SafeAreaView style={productsPageStyle.container}>
-      <Text>{showModal}</Text>
       <FlatList
         contentContainerStyle={productsPageStyle.listContainer}
         data={products}
