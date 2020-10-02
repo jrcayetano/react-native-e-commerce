@@ -2,13 +2,10 @@ import React from 'react';
 import {Button, View, TouchableOpacity, Text} from 'react-native';
 import {connect} from 'react-redux';
 
-const Basket = ({navigation, productList}) => {
-  const handleBasketClick = () => {
-    navigation.navigate('basket');
-  };
-
+const Basket = ({onBasketClick, productList}) => {
   return (
     <TouchableOpacity
+      onPress={onBasketClick}
       style={{
         backgroundColor: '#ffc107',
         borderRadius: 5,

@@ -26,29 +26,31 @@ const AppNavigation = ({isLogged}) => {
             </>
           ) : (
             <>
-              {/*  <Stack.Screen
+              <Stack.Screen
                 name="products"
                 component={Products}
-                options={{
-                  headerTitle: 'Products',
-                  headerRight: () => <HeaderButtons />,
-                }}
-              /> */}
-              {/* <Stack.Screen
+                options={({navigation, route}) => ({
+                  headerTitle: 'Productos',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+              <Stack.Screen
                 name="detail"
                 component={ProductDetail}
-                options={{
+                options={({navigation, route}) => ({
                   headerTitle: 'Detalle',
-                  headerRight: () => <HeaderButtons />,
-                }}
-              /> */}
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
               <Stack.Screen
                 name="basket"
                 component={BasketList}
-                options={{
+                options={({navigation, route}) => ({
                   headerTitle: 'Cesta',
-                  headerRight: () => <HeaderButtons />,
-                }}
+                  headerRight: ({navigation}) => (
+                    <HeaderButtons navigation={navigation} />
+                  ),
+                })}
               />
             </>
           )}
