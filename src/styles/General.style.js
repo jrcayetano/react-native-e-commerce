@@ -2,6 +2,12 @@ import {StyleSheet} from 'react-native';
 import colorsApp from './Colors';
 
 export const generalStyles = StyleSheet.create({
+  flexRow: {
+    flexDirection: 'row',
+  },
+  vAlignRowCenter: {
+    alignItems: 'center',
+  },
   input: {
     borderBottomWidth: 0.2,
   },

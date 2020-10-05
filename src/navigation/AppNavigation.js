@@ -7,6 +7,8 @@ import Register from './../screens/Register';
 import Products from '../screens/Products';
 import Offers from '../screens/Offers';
 import ProductDetail from '../screens/ProductDetail/ProductDetail';
+import Profile from './../screens/Profile';
+import Orders from './../screens/Orders';
 import {connect} from 'react-redux';
 import {Text, Button, View} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
@@ -88,6 +90,31 @@ const OffersNav = () => {
   );
 };
 
+const UserLoggedNav = () => {
+  return (
+    <Stack.Navigator>
+      {/* <Stack.Screen
+        name="editProfile"
+        component={Profile}
+        options={({navigation, route}) => ({
+          headerTitle: 'Editar perfil',
+          headerRight: ({navigation}) => (
+            <HeaderButtons navigation={navigation} />
+          ),
+        })}></Stack.Screen> */}
+      <Stack.Screen
+        name="orders"
+        component={Orders}
+        options={({navigation, route}) => ({
+          headerTitle: 'Orders',
+          headerRight: ({navigation}) => (
+            <HeaderButtons navigation={navigation} />
+          ),
+        })}></Stack.Screen>
+    </Stack.Navigator>
+  );
+};
+
 const CustomDrawerContent = (props) => {
   return (
     <DrawerContentScrollView
@@ -145,6 +172,20 @@ const CustomDrawerContent = (props) => {
   );
 };
 
+/**
+ * 
+ * <Drawer.Screen
+              name="editProfile"
+              component={EditProfile}
+              options={({navigation, route}) => ({
+                headerTitle: 'Editar perfil',
+                headerRight: ({navigation}) => (
+                  <HeaderButtons navigation={navigation} />
+                ),
+              })}
+            />
+ */
+
 const AppNavigation = ({isLogged}) => {
   return (
     <>
@@ -152,7 +193,7 @@ const AppNavigation = ({isLogged}) => {
         <Drawer.Navigator
           drawerContent={(props) => <CustomDrawerContent {...props} />}>
           <>
-            <Drawer.Screen
+            {/*  <Drawer.Screen
               name="products"
               component={ProductsNav}
               options={({navigation, route}) => ({
@@ -167,6 +208,16 @@ const AppNavigation = ({isLogged}) => {
               options={({navigation, route}) => ({
                 headerTitle: 'offers',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
+              })}
+            /> */}
+            <Drawer.Screen
+              name="editProfile"
+              component={UserLoggedNav}
+              options={({navigation, route}) => ({
+                headerTitle: 'Editar perfil',
+                headerRight: ({navigation}) => (
+                  <HeaderButtons navigation={navigation} />
+                ),
               })}
             />
           </>

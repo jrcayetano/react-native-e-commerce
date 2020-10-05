@@ -30,15 +30,10 @@ export const productOfferCardStyle = StyleSheet.create({
     marginBottom: 10,
   },
   image: {},
-  info: {
-    // alignItems: 'center',
-  },
+  info: {},
   title: {
     fontSize: 15,
-    // color: colorsApp.COLOR_TEXT_PRODUCT_INFO,
     color: '#007bff',
-    // fontWeight: fontsApp.FONT_BOLD,
-    // textAlign: 'center',
   },
   sellerAndSentBy: {
     fontSize: 11,
