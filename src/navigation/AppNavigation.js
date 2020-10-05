@@ -5,6 +5,7 @@ import Login from './../screens/Login';
 import Welcome from './../screens/Welcome';
 import Register from './../screens/Register';
 import Products from '../screens/Products';
+import Offers from '../screens/Offers';
 import ProductDetail from '../screens/ProductDetail/ProductDetail';
 import {connect} from 'react-redux';
 import {Text, Button, View} from 'react-native';
@@ -39,6 +40,16 @@ const ProductsNav = () => {
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
+      <Stack.Screen
+        name="basket"
+        component={BasketList}
+        options={({navigation, route}) => ({
+          headerTitle: 'Cesta',
+          headerRight: ({navigation}) => (
+            <HeaderButtons navigation={navigation} />
+          ),
+        })}
+      />
     </Stack.Navigator>
   );
 };
@@ -48,7 +59,7 @@ const OffersNav = () => {
     <Stack.Navigator>
       <Stack.Screen
         name="offers"
-        component={Products}
+        component={Offers}
         initialParams={{isOffer: true}}
         options={({navigation, route}) => ({
           headerTitle: 'Offers',
@@ -61,6 +72,16 @@ const OffersNav = () => {
         options={({navigation, route}) => ({
           headerTitle: 'Detalle',
           headerRight: () => <HeaderButtons navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="basket"
+        component={BasketList}
+        options={({navigation, route}) => ({
+          headerTitle: 'Cesta',
+          headerRight: ({navigation}) => (
+            <HeaderButtons navigation={navigation} />
+          ),
         })}
       />
     </Stack.Navigator>
@@ -142,61 +163,14 @@ const AppNavigation = ({isLogged}) => {
             <Drawer.Screen
               name="offers"
               component={OffersNav}
+              initialParams={{isOffer: true}}
               options={({navigation, route}) => ({
                 headerTitle: 'offers',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
               })}
             />
-            {/*  <Drawer.Screen
-              name="basket"
-              component={BasketList}
-              options={({navigation, route}) => ({
-                headerTitle: 'Cesta',
-                headerRight: ({navigation}) => (
-                  <HeaderButtons navigation={navigation} />
-                ),
-              })}
-            /> */}
           </>
         </Drawer.Navigator>
-        {/* <Stack.Navigator>
-          {!isLogged ? (
-            <>
-              <Stack.Screen name="welcome" component={Welcome} />
-              <Stack.Screen name="login" component={Login} />
-              <Stack.Screen name="register" component={Register} />
-            </>
-          ) : (
-            <>
-              <Stack.Screen
-                name="products"
-                component={Products}
-                options={({navigation, route}) => ({
-                  headerTitle: 'Productos',
-                  headerRight: () => <HeaderButtons navigation={navigation} />,
-                })}
-              />
-              <Stack.Screen
-                name="detail"
-                component={ProductDetail}
-                options={({navigation, route}) => ({
-                  headerTitle: 'Detalle',
-                  headerRight: () => <HeaderButtons navigation={navigation} />,
-                })}
-              />
-              <Stack.Screen
-                name="basket"
-                component={BasketList}
-                options={({navigation, route}) => ({
-                  headerTitle: 'Cesta',
-                  headerRight: ({navigation}) => (
-                    <HeaderButtons navigation={navigation} />
-                  ),
-                })}
-              />
-            </>
-          )}
-        </Stack.Navigator> */}
       </NavigationContainer>
     </>
   );

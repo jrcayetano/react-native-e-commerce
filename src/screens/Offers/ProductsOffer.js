@@ -3,15 +3,21 @@ import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {productsPageStyle} from './../../styles/Products.style';
 import {getProductList} from './../../services/Product.service';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import ProductCard from './ProductCard';
 import FAB from './../../components/FAB';
-import ProductFilter from './ProductFilter';
+import ProductFilter from './../Products/ProductFilter';
+import ProductOfferCard from './ProductOfferCard';
+import {connect, useDispatch} from 'react-redux';
+import {
+  AddProduct,
+  IncremenProductQuantity,
+} from './../../state/actions/BasketActions';
 
-const Products = ({navigation, route}) => {
+const Offers = ({navigation, route, basketProductsList}) => {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
-  const isOffer = false;
+  const isOffer = true;
 
   useEffect(() => {
     getProductList(null, isOffer).then((response) =>
@@ -20,7 +26,6 @@ const Products = ({navigation, route}) => {
   }, []);
 
   const handleFilter = (filter) => {
-    console.log(filter);
     setShowModal(!showModal);
     getProductList(filter, isOffer).then((response) =>
       setProducts(response.data),
@@ -31,6 +36,24 @@ const Products = ({navigation, route}) => {
     setShowModal(!showModal);
   };
 
+  const foundProductInBasket = (product) => {
+    return basketProductsList.find((prod) => prod.id === product.id);
+  };
+
+  const handleAddBasket = (product) => {
+    const foundProduct = foundProductInBasket(product);
+    if (foundProduct) {
+      dispatch(
+        IncremenProductQuantity({
+          productId: product.id,
+          quantity: foundProduct.quantity + 1,
+        }),
+      );
+    } else {
+      dispatch(AddProduct(product));
+    }
+  };
+
   const handleProductPress = (productId) => {
     navigation.navigate('detail', {id: productId});
   };
@@ -39,19 +62,21 @@ const Products = ({navigation, route}) => {
     <TouchableOpacity
       style={productsPageStyle.touchable}
       onPress={() => handleProductPress(item.id)}>
-      <ProductCard style={productsPageStyle.container} product={item} />
+      <ProductOfferCard
+        style={productsPageStyle.container}
+        product={item}
+        onAddToBasket={handleAddBasket}
+      />
     </TouchableOpacity>
   );
 
   return (
     <SafeAreaView style={productsPageStyle.container}>
       <FlatList
-        contentContainerStyle={productsPageStyle.listContainer}
         data={products}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
-
       <FAB
         text="+"
         fabStyle={{backgroundColor: '#0066ff'}}
@@ -65,4 +90,8 @@ const Products = ({navigation, route}) => {
   );
 };
 
-export default Products;
+const mapStateToProps = (state) => ({
+  basketProductsList: state.basket.productsList,
+});
+
+export default connect(mapStateToProps)(React.memo(Offers));

@@ -8,7 +8,13 @@ export const getProductList = (filter, isOffer) => {
     const params = generateFilterSearch(filter, isOffer);
     return http.get(`${url}`, {params});
   } else {
-    return http.get(`${url}`);
+    const params = new URLSearchParams();
+    if (isOffer) {
+      params.set('isOffer_ne', 'false');
+    } else {
+      params.set('isOffer_ne', 'true');
+    }
+    return http.get(`${url}`, {params});
   }
 };
 
