@@ -49,7 +49,7 @@ const OffersNav = () => {
       <Stack.Screen
         name="offers"
         component={Products}
-        // initialParams={{isOffer: true}}
+        initialParams={{isOffer: true}}
         options={({navigation, route}) => ({
           headerTitle: 'Offers',
           headerRight: () => <HeaderButtons navigation={navigation} />,
@@ -142,7 +142,6 @@ const AppNavigation = ({isLogged}) => {
             <Drawer.Screen
               name="offers"
               component={OffersNav}
-              // initialParams={{isOffer: true}}
               options={({navigation, route}) => ({
                 headerTitle: 'offers',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
