@@ -115,7 +115,7 @@ const AppNavigation = ({isLogged}) => {
                 headerRight: () => <HeaderButtons navigation={navigation} />,
               })}
             />
-            <Drawer.Screen
+            {/*  <Drawer.Screen
               name="basket"
               component={BasketList}
               options={({navigation, route}) => ({
@@ -124,7 +124,7 @@ const AppNavigation = ({isLogged}) => {
                   <HeaderButtons navigation={navigation} />
                 ),
               })}
-            />
+            /> */}
           </>
         </Drawer.Navigator>
         {/* <Stack.Navigator>
