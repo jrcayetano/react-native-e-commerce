@@ -7,12 +7,17 @@ import ProductCard from './ProductCard';
 import FAB from './../../components/FAB';
 import ProductFilter from './ProductFilter';
 
-const Products = ({navigation}) => {
+const Products = ({navigation, route}) => {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+  const [isOffer, setIsOffer] = useState(false);
   useEffect(() => {
     getProductList().then((response) => setProducts(response.data));
   }, []);
+
+  useEffect(() => {
+    setIsOffer(route.params?.isOffer);
+  }, [route.params?.isOffer]);
 
   const handleFilter = (filter) => {
     console.log(filter);
@@ -40,6 +45,7 @@ const Products = ({navigation}) => {
 
   return (
     <SafeAreaView style={productsPageStyle.container}>
+      <Text> {isOffer ? 'OFERTA' : 'PRODUCT'}</Text>
       <FlatList
         contentContainerStyle={productsPageStyle.listContainer}
         data={products}

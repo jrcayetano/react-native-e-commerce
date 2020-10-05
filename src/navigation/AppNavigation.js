@@ -43,6 +43,30 @@ const ProductsNav = () => {
   );
 };
 
+const OffersNav = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="offers"
+        component={Products}
+        // initialParams={{isOffer: true}}
+        options={({navigation, route}) => ({
+          headerTitle: 'Offers',
+          headerRight: () => <HeaderButtons navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="detail"
+        component={ProductDetail}
+        options={({navigation, route}) => ({
+          headerTitle: 'Detalle',
+          headerRight: () => <HeaderButtons navigation={navigation} />,
+        })}
+      />
+    </Stack.Navigator>
+  );
+};
+
 const CustomDrawerContent = (props) => {
   return (
     <DrawerContentScrollView
@@ -112,6 +136,15 @@ const AppNavigation = ({isLogged}) => {
               component={ProductsNav}
               options={({navigation, route}) => ({
                 headerTitle: 'Productos',
+                headerRight: () => <HeaderButtons navigation={navigation} />,
+              })}
+            />
+            <Drawer.Screen
+              name="offers"
+              component={OffersNav}
+              // initialParams={{isOffer: true}}
+              options={({navigation, route}) => ({
+                headerTitle: 'offers',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
               })}
             />
