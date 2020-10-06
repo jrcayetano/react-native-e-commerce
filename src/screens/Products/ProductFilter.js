@@ -3,6 +3,13 @@ import {Text, View, Modal, TouchableHighlight, StyleSheet} from 'react-native';
 import ProductFilterForm from './ProductFilterForm';
 
 const ProductFilter = ({showModal, onSubmit}) => {
+  const [filter, setFilter] = useState();
+
+  const handleSubmit = (filter) => {
+    setFilter(filter);
+    onSubmit(filter);
+  };
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -15,7 +22,7 @@ const ProductFilter = ({showModal, onSubmit}) => {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Filtro Avanzado</Text>
-            <ProductFilterForm onSubmit={onSubmit} />
+            <ProductFilterForm onSubmit={handleSubmit} filter={filter} />
           </View>
         </View>
       </Modal>

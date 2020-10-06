@@ -5,20 +5,20 @@ import {generalStyles} from './../../styles/General.style';
 import * as Yup from 'yup';
 import {Picker} from '@react-native-community/picker';
 
-const ProductFilterForm = ({onSubmit}) => {
+const ProductFilterForm = ({onSubmit, filter}) => {
   const handleOnSubmitForm = (formValues) => {
     onSubmit(formValues);
   };
 
   const [form, setForm] = useState({
-    searchTerm: '',
-    clock: false,
-    light: false,
-    player: false,
-    mouse: false,
-    min: null,
-    max: null,
-    rating: null,
+    searchTerm: (filter && filter.searchTerm) || '',
+    clock: (filter && filter.clock) || false,
+    light: (filter && filter.light) || false,
+    player: (filter && filter.player) || false,
+    mouse: (filter && filter.mouse) || false,
+    min: (filter && filter.min) || null,
+    max: (filter && filter.max) || null,
+    rating: (filter && filter.rating) || null,
   });
 
   return (
