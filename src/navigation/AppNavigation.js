@@ -20,6 +20,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import ProfileInfo from './../components/ProfileInfo';
 import {logout} from './../state/actions/RootActions';
 
 const Stack = createStackNavigator();
@@ -268,7 +269,11 @@ const AppNavigation = ({isLogged}) => {
           <Drawer.Navigator
             drawerContent={(props) => (
               <CustomDrawerContent {...props} dispatch={dispatch} />
-            )}>
+            )}
+            drawerContentOptions={{
+              activeTintColor: '#e91e63',
+              itemStyle: {marginVertical: 30},
+            }}>
             <>
               <Drawer.Screen
                 name="products"

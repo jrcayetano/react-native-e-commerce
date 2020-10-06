@@ -10,8 +10,10 @@ import {
   StyleSheet,
 } from 'react-native';
 import BasketListProduct from './BasketListProduct';
+import {ClearBasket} from './../../state/actions/BasketActions';
+import {createOrder, generateOrder} from './../../services/Orders.service';
 
-const BasketList = ({basketList}) => {
+const BasketList = ({basketList, isUserLogged, userLoggedData}) => {
   const [subtotal, setSubtotal] = useState(0);
   const [listData, setListData] = useState([]);
   const dispatch = useDispatch();
@@ -30,6 +32,20 @@ const BasketList = ({basketList}) => {
       .reduce((product1, product2) => product1 + product2, 0);
     setListData([{title: total, data: [...basketList]}]);
     setSubtotal(total);
+  };
+
+  const handleBuy = () => {
+    if (!isUserLogged) {
+      return;
+    }
+    const order = generateOrder(basketList, subtotal, userLoggedData);
+    createOrder(order)
+      .then((response) => {
+        if (response && response.data) {
+          dispatch(ClearBasket());
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   const handleRenderItem = (item) => {
@@ -51,6 +67,7 @@ const BasketList = ({basketList}) => {
           <Text style={styles.header}>Subtotal: {subtotal}</Text>
         )}
       />
+      <Button title="Finalizar compra" onPress={handleBuy} />
     </SafeAreaView>
   );
 };

@@ -4,6 +4,13 @@ import {orderItemStyle} from '../../styles/OrderItem.style';
 import {generalStyles} from './../../styles/General.style';
 
 const OrderItem = ({product}) => {
+  const elipsis = (text) => {
+    if (text) {
+      const n = 30;
+      return text.length > n ? text.substr(0, n - 1) + '...' : text;
+    }
+    return text;
+  };
   return (
     <View
       style={[
@@ -20,7 +27,7 @@ const OrderItem = ({product}) => {
         />
       </View>
       <View style={orderItemStyle.imageContainer}>
-        <Text style={orderItemStyle.name}>{product?.name}</Text>
+        <Text style={orderItemStyle.name}>{elipsis(product?.name)}</Text>
 
         <Text style={orderItemStyle.price}>{product?.price} €</Text>
         <Text>
