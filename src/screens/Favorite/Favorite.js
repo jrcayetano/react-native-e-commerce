@@ -17,10 +17,12 @@ import {
 } from './../../state/actions/BasketActions';
 import {DeleteFavoriteProduct} from './../../state/actions/UserLoggedActions';
 import {generalStyles} from './../../styles/General.style';
+import {SearchBar} from 'react-native-elements';
 
 const Favorite = ({favoriteList, basketProductsList}) => {
   const dispatch = useDispatch();
   const [filterProduct, setFilterProduct] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getFavorites().then((response) => {
@@ -61,6 +63,7 @@ const Favorite = ({favoriteList, basketProductsList}) => {
       product.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
     setFilterProduct(productFiltered);
+    setSearchTerm(searchTerm);
   };
 
   const renderItem = ({item}) => {
@@ -83,14 +86,19 @@ const Favorite = ({favoriteList, basketProductsList}) => {
 
   return (
     <SafeAreaView style={ordersStyle.container}>
-      <TextInput
+      <SearchBar
+        placeholder="Type Here..."
+        onChangeText={(evnt) => handleFilterProduct(evnt)}
+        value={searchTerm}
+      />
+      {/* <TextInput
         style={[
           generalStyles.input,
           {width: '80%', alignSelf: 'center', marginTop: 20, marginBottom: 10},
         ]}
         placeholder="Filtrado"
         onChangeText={(evnt) => handleFilterProduct(evnt)}
-      />
+      /> */}
       <FlatList
         data={filterProduct}
         renderItem={renderItem}
