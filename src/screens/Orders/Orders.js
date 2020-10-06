@@ -10,7 +10,6 @@ const Orders = () => {
   useEffect(() => {
     getOrders().then((response) => {
       const formatedData = adaptToList(response.data);
-      console.log('formatedData', formatedData);
       setOrders(formatedData);
     });
   }, []);

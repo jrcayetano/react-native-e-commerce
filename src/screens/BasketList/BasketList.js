@@ -15,7 +15,7 @@ const BasketList = ({basketList}) => {
   const [subtotal, setSubtotal] = useState(0);
   const [listData, setListData] = useState([]);
   const dispatch = useDispatch();
-  console.log(basketList);
+
   useEffect(() => {
     calculateSubtotal();
   }, [basketList]);

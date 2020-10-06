@@ -26,7 +26,6 @@ const Profile = ({profile}) => {
   }, [profile]);
 
   const handleSubmit = (userProfile) => {
-    console.log('userProfile', userProfile);
     updateProfile(userProfile, userId, password).then((response) => {
       if (response && response.data) {
         dispatch(SetUsername(response.data.username));

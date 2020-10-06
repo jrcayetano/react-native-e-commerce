@@ -24,12 +24,9 @@ const Login = ({selectedMenu}) => {
   };
 
   const getUserLoggedData = (response, formValues) => {
-    console.log('LLega 1', response, formValues);
     if (response && response.accessToken) {
-      console.log('response tiene token');
       getUserByEmail(formValues.email)
         .then((userData) => {
-          console.log('Llega 3', userData);
           saveLoggedUserDataInStore(response, userData.data);
         })
         .catch((error) => {

@@ -26,7 +26,6 @@ const Favorite = ({favoriteList, basketProductsList}) => {
 
   useEffect(() => {
     getFavorites().then((response) => {
-      console.log('filter products', response.data);
       setFilterProduct(response.data);
       dispatch(AddFavoriteProductInBulk(response.data));
     });

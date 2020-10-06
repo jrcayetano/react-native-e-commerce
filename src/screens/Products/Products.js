@@ -20,7 +20,6 @@ const Products = ({navigation, route}) => {
   }, []);
 
   const handleFilter = (filter) => {
-    console.log(filter);
     setShowModal(!showModal);
     getProductList(filter, isOffer).then((response) =>
       setProducts(response.data),

@@ -13,7 +13,6 @@ const appGeneralReducer = combineReducers({
 
 const rootReducer = (state, action) => {
   if (action.type === RootActionType.LOGOUT) {
-    console.log('llega');
     AsyncStorage.clear();
     state = undefined;
   }
