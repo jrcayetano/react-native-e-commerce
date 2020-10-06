@@ -4,8 +4,9 @@ export const welcomeStyles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    // justifyContent: 'flex-end',
+    justifyContent: 'flex-end',
     justifyContent: 'space-between',
+    backgroundColor: 'white',
   },
   logo: {
     borderBottomWidth: 0.2,

@@ -337,7 +337,12 @@ const AppNavigation = ({isLogged}) => {
           </Drawer.Navigator>
         ) : (
           <Stack.Navigator>
-            <Stack.Screen name="welcome" component={Welcome}></Stack.Screen>
+            <Stack.Screen
+              name="welcome"
+              component={Welcome}
+              options={({navigation, route}) => ({
+                headerShown: false,
+              })}></Stack.Screen>
             <Stack.Screen name="login" component={Login} />
             <Stack.Screen name="register" component={Register} />
           </Stack.Navigator>
