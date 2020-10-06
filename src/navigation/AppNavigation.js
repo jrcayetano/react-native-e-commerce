@@ -200,6 +200,9 @@ const CustomDrawerContent = (props) => {
     <DrawerContentScrollView
       {...props}
       contentContainerStyle={{flex: 1, paddingTop: 0}}>
+      <View style={{padding: 10}}>
+        <ProfileInfo />
+      </View>
       <View style={{flex: 1}}>
         <View
           style={{
