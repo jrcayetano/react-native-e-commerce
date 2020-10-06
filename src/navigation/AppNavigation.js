@@ -343,8 +343,20 @@ const AppNavigation = ({isLogged}) => {
               options={({navigation, route}) => ({
                 headerShown: false,
               })}></Stack.Screen>
-            <Stack.Screen name="login" component={Login} />
-            <Stack.Screen name="register" component={Register} />
+            <Stack.Screen
+              name="login"
+              component={Login}
+              options={({navigation, route}) => ({
+                headerTitle: 'Login',
+              })}></Stack.Screen>
+
+            <Stack.Screen
+              name="register"
+              component={Register}
+              options={({navigation, route}) => ({
+                headerTitle: 'Registro',
+              })}
+            />
           </Stack.Navigator>
         )}
       </NavigationContainer>

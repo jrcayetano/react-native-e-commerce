@@ -41,7 +41,7 @@ const Welcome = ({navigation}) => {
             <Text style={{color: 'black', fontWeight: '700'}}>Login</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleLogin}>
+        <TouchableOpacity onPress={handleRegister}>
           <View
             style={{
               backgroundColor: '#6c757d',

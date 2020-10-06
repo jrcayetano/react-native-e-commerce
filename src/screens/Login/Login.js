@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View, Image} from 'react-native';
 import LoginForm from './LoginForm';
 import {loginPageStyle} from './../../styles/LoginPage.style';
 import {login, getUserByEmail} from './../../services/Login.service';
@@ -47,8 +47,16 @@ const Login = ({selectedMenu}) => {
   };
 
   return (
-    <SafeAreaView style={loginPageStyle.container}>
-      <LoginForm onSubmitForm={handleSubmitForm} />
+    <SafeAreaView
+      style={[loginPageStyle.container, {backgroundColor: 'white'}]}>
+      <View style={{width: '80%', alignItems: 'center'}}>
+        <Image
+          style={{width: 100, height: 100, marginBottom: 30}}
+          resizeMode="cover"
+          source={require('./../../assets/images/brand.png')}
+        />
+        <LoginForm onSubmitForm={handleSubmitForm} />
+      </View>
     </SafeAreaView>
   );
 };

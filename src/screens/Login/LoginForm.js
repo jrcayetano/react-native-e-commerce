@@ -41,7 +41,7 @@ const LoginForm = ({onSubmitForm}) => {
               <Text style={{color: 'red'}}>{errors.password}</Text>
             </View>
             <View>
-              <Button onPress={handleSubmit} title="Login" />
+              <Button onPress={handleSubmit} title="Entrar" />
             </View>
           </>
         )}
