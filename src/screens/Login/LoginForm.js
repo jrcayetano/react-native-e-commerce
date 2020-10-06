@@ -54,6 +54,7 @@ const LoginForm = ({onSubmitForm}) => {
                 renderErrorMessage={
                   (errors.password && touched.password) || submitted
                 }
+                secureTextEntry={true}
                 leftIcon={<Icon name="key" size={20} color="#555" />}
               />
             </View>
