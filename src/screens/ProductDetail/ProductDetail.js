@@ -19,10 +19,12 @@ import {
   IncremenProductQuantity,
 } from './../../state/actions/BasketActions';
 import {AddFavoriteProduct} from './../../state/actions/UserLoggedActions';
+import Loading from './../../components/Loading';
 
 const ProductDetail = ({route, basketProductsList}) => {
   const [id, setId] = useState();
   const [product, setProduct] = useState({reviews: [], extraInformation: []});
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const foundProductInBasket = (product) => {
@@ -31,13 +33,16 @@ const ProductDetail = ({route, basketProductsList}) => {
 
   useEffect(() => {
     setId(route.params.id);
-    getById(route.params.id).then(
-      (response) => {
-        console.log('response', response.data);
-        setProduct(response.data);
-      },
-      () => console.log(product),
-    );
+    setIsLoading(true);
+    getById(route.params.id)
+      .finally(() => setIsLoading(false))
+      .then(
+        (response) => {
+          console.log('response', response.data);
+          setProduct(response.data);
+        },
+        () => console.log(product),
+      );
   }, []);
 
   const handleAddToBasket = () => {
@@ -59,44 +64,47 @@ const ProductDetail = ({route, basketProductsList}) => {
   };
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <View style={productDetailStyle.container}>
-          <ProductDetailInformation product={product} />
-          <View style={productDetailStyle.actionButtons}>
-            <Button
-              color={'#ffc107'}
-              style={generalStyles.btnPrimary}
-              title="Añadir a la cesta"
-              onPress={handleAddToBasket}></Button>
-            <Button
-              color={'#6c757d'}
-              style={generalStyles.btnSecondary}
-              title="Añadir a favoritos"
-              onPress={haddleAddToFavorite}></Button>
-          </View>
-          <View
-            style={{
-              marginTop: 20,
-              borderTopWidth: 1,
-              borderColor: '#efefef',
-            }}>
-            <Text
+    <SafeAreaView style={{height: '100%'}}>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <ScrollView>
+          <View style={productDetailStyle.container}>
+            <ProductDetailInformation product={product} />
+            <View style={productDetailStyle.actionButtons}>
+              <Button
+                color={'#ffc107'}
+                style={generalStyles.btnPrimary}
+                title="Añadir a la cesta"
+                onPress={handleAddToBasket}></Button>
+              <Button
+                color={'#6c757d'}
+                style={generalStyles.btnSecondary}
+                title="Añadir a favoritos"
+                onPress={haddleAddToFavorite}></Button>
+            </View>
+            <View
               style={{
                 marginTop: 20,
-                marginBottom: 20,
-                fontWeight: '500',
-                fontSize: 20,
+                borderTopWidth: 1,
+                borderColor: '#efefef',
               }}>
-              Principales reseñas de España
-            </Text>
-            {product &&
-              product?.reviews.map((info, index) => (
-                <ProductDetailReview review={info} key={`info2_${index}`} />
-              ))}
+              <Text
+                style={{
+                  marginTop: 20,
+                  marginBottom: 20,
+                  fontWeight: '500',
+                  fontSize: 20,
+                }}>
+                Principales reseñas de España
+              </Text>
+              {product &&
+                product?.reviews.map((info, index) => (
+                  <ProductDetailReview review={info} key={`info2_${index}`} />
+                ))}
+            </View>
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };

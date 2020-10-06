@@ -4,14 +4,20 @@ import {ScrollView} from 'react-native-gesture-handler';
 import OrderItem from './OrderItem';
 import {getOrders} from './../../services/User.service';
 import {ordersStyle} from './../../styles/Orders.style';
+import Loading from './../../components/Loading';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    getOrders().then((response) => {
-      const formatedData = adaptToList(response.data);
-      setOrders(formatedData);
-    });
+    setIsLoading(true);
+    getOrders()
+      .finally(() => setIsLoading(false))
+      .then((response) => {
+        const formatedData = adaptToList(response.data);
+        setOrders(formatedData);
+      });
   }, []);
 
   const renderItem = ({item}) => {
@@ -34,12 +40,15 @@ const Orders = () => {
 
   return (
     <SafeAreaView style={ordersStyle.container}>
-      <FlatList
-        data={orders}
-        renderItem={renderItem}
-        keyExtractor={(item) => '' + item.id.toString()}
-        ItemSeparatorComponent={renderSeparator}
-      />
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <FlatList
+          data={orders}
+          renderItem={renderItem}
+          keyExtractor={(item) => '' + item.id.toString()}
+          ItemSeparatorComponent={renderSeparator}
+        />
+      )}
     </SafeAreaView>
   );
 };

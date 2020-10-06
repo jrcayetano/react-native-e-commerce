@@ -11,25 +11,29 @@ import {
   AddProduct,
   IncremenProductQuantity,
 } from './../../state/actions/BasketActions';
+import Loading from './../../components/Loading';
 
 const Offers = ({navigation, route, basketProductsList}) => {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const isOffer = true;
 
   useEffect(() => {
-    getProductList(null, isOffer).then((response) =>
-      setProducts(response.data),
-    );
+    setIsLoading(true);
+    getProductList(null, isOffer)
+      .finally(() => setIsLoading(false))
+      .then((response) => setProducts(response.data));
   }, []);
 
   const handleFilter = (filter) => {
     setShowModal(!showModal);
-    getProductList(filter, isOffer).then((response) =>
-      setProducts(response.data),
-    );
+    setIsLoading(true);
+    getProductList(filter, isOffer)
+      .finally(() => setIsLoading(false))
+      .then((response) => setProducts(response.data));
   };
 
   const hadleSearch = () => {
@@ -72,20 +76,23 @@ const Offers = ({navigation, route, basketProductsList}) => {
 
   return (
     <SafeAreaView style={productsPageStyle.container}>
-      <FlatList
-        data={products}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-      <FAB
-        text="+"
-        fabStyle={{backgroundColor: '#0066ff'}}
-        textStyle={{color: '#fff'}}
-        onSearch={hadleSearch}
-      />
-      <ProductFilter
-        showModal={showModal}
-        onSubmit={handleFilter}></ProductFilter>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id.toString()}
+          />
+          <FAB
+            text="+"
+            fabStyle={{backgroundColor: '#0066ff'}}
+            textStyle={{color: '#fff'}}
+            onSearch={hadleSearch}
+          />
+          <ProductFilter showModal={showModal} onSubmit={handleFilter} />
+        </>
+      )}
     </SafeAreaView>
   );
 };
