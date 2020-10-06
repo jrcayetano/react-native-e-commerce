@@ -22,7 +22,7 @@ const ProductDetailInformation = ({product}) => {
       <View
         style={[
           productDetailInformationStyle.ratingContainer,
-          {flexDirection: 'row'},
+          {flexDirection: 'row', alignItems: 'center'},
         ]}>
         <Rating rating={product?.rating} />
         <Text style={productDetailInformationStyle.reviews}>

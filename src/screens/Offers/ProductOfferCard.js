@@ -63,10 +63,18 @@ const ProductOfferCard = ({product, onAddToBasket}) => {
           </Text>
         </View>
         <View
-          style={[productOfferCardStyle.rating, productOfferCardStyle.spacing]}>
+          style={[
+            productOfferCardStyle.rating,
+            productOfferCardStyle.spacing,
+            {alignItems: 'center'},
+          ]}>
           <Rating rating={product.rating} />
           <View>
-            <Text style={[productOfferCardStyle.reviews, {marginLeft: 10}]}>
+            <Text
+              style={[
+                productOfferCardStyle.reviews,
+                {marginLeft: 10, fontSize: 20, color: '#007bff'},
+              ]}>
               {product?.reviews.length}
             </Text>
           </View>

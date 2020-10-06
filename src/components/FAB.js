@@ -1,5 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet, Text} from 'react-native';
+import {Icon} from 'react-native-elements';
 
 const size = 70;
 
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
 const FAB = ({onSearch}) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onSearch}>
-      <Text>S</Text>
+      <Icon name="search" type="font-awesome" color="white" />
     </TouchableOpacity>
   );
 };

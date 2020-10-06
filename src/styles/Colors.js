@@ -7,7 +7,7 @@ const colorsApp = {
   COLOR_FOOTER_LINKS: 'white',
   COLOR_BG_FOOTER: '#232f3e',
   COLOR_TEXT_PRODUCT_INFO: 'black',
-  COLOR_STAR: ' #0066c0',
+  COLOR_STAR: '#0066c0',
   COLOR_REVIEW_DATE: '#555',
   COLOR_TEXT_BADGE: 'white',
   COLOR_BG_BADGET: ' #c45500',

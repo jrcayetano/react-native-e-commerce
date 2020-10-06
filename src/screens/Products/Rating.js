@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
+import {Icon} from 'react-native-elements';
+import colorsApp from './../../styles/Colors';
 
 const Rating = ({rating}) => {
   const STARS_NUMBER = [1, 2, 3, 4, 5];
@@ -24,12 +26,24 @@ const Rating = ({rating}) => {
       {STARS_NUMBER.map(
         (star, index) =>
           index < numberPart && (
-            <Text style={{marginRight: 3}} key={`star_${index}`}>
+            <Icon
+              name="star"
+              color={colorsApp.COLOR_STAR}
+              type="font-awesome"
+              key={`star_${index}`}
+            />
+            /*  <Text style={{marginRight: 3}} key={`star_${index}`}>
               S
-            </Text>
+            </Text> */
           ),
       )}
-      {decimalPart > 0 && <Text>H</Text>}
+      {decimalPart > 0 && (
+        <Icon
+          name="star-half"
+          color={colorsApp.COLOR_STAR}
+          type="font-awesome"
+        />
+      )}
     </View>
   );
 };

@@ -42,10 +42,15 @@ const ProductCard = ({product}) => {
             productCardStyle.rating,
             productCardStyle.spacing,
             generalStyles.labeledField,
+            {alignItems: 'center'},
           ]}>
           <Rating rating={product.rating} />
           <View>
-            <Text style={[productCardStyle.reviews, {marginLeft: 10}]}>
+            <Text
+              style={[
+                productCardStyle.reviews,
+                {marginLeft: 10, fontSize: 20, color: '#007bff'},
+              ]}>
               {product?.reviews.length}
             </Text>
           </View>

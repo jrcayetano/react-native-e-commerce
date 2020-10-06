@@ -32,5 +32,7 @@ export const productDetailInformationStyle = StyleSheet.create({
   },
   reviews: {
     marginLeft: 10,
+    fontSize: 20,
+    color: '#007bff',
   },
 });

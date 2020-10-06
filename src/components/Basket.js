@@ -2,6 +2,9 @@ import React from 'react';
 import {Button, View, TouchableOpacity, Text} from 'react-native';
 import {connect} from 'react-redux';
 
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {Icon} from 'react-native-elements';
+
 const Basket = ({onBasketClick, productList}) => {
   return (
     <TouchableOpacity
@@ -11,6 +14,7 @@ const Basket = ({onBasketClick, productList}) => {
         borderRadius: 5,
         marginRight: 20,
         padding: 10,
+        height: 40,
       }}>
       <View
         style={{
@@ -21,8 +25,13 @@ const Basket = ({onBasketClick, productList}) => {
           textAlign: 'center',
         }}>
         <View style={{flexDirection: 'row'}}>
-          <Text style={{marginRight: 5}}>B</Text>
-          <Text>{productList?.length}</Text>
+          <Icon
+            name="shopping-cart"
+            type="font-awesome"
+            color="#033649"
+            style={{marginRight: 10}}
+          />
+          <Text style={{fontSize: 18}}>{productList?.length}</Text>
         </View>
       </View>
     </TouchableOpacity>
