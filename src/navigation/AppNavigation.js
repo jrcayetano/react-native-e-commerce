@@ -49,9 +49,7 @@ const ProductStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
       <Stack.Screen
@@ -92,9 +90,7 @@ const OffersStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
     </Stack.Navigator>
@@ -117,9 +113,7 @@ const editProfileStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
     </Stack.Navigator>
@@ -142,9 +136,7 @@ const orderStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
     </Stack.Navigator>
@@ -167,9 +159,7 @@ const favoriteStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
     </Stack.Navigator>
@@ -184,27 +174,21 @@ const UserLoggedNav = () => {
         component={Profile}
         options={({navigation, route}) => ({
           headerTitle: 'Editar perfil',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
       <Stack.Screen
         name="orders"
         component={Orders}
         options={({navigation, route}) => ({
           headerTitle: 'Orders',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
       <Stack.Screen
         name="favorite"
         component={Favorite}
         options={({navigation, route}) => ({
           headerTitle: 'Favoritos',
-          headerRight: ({navigation}) => (
-            <HeaderButtons navigation={navigation} />
-          ),
+          headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
     </Stack.Navigator>
   );
@@ -216,7 +200,7 @@ const CustomDrawerContent = (props) => {
       {...props}
       contentContainerStyle={{flex: 1, paddingTop: 0}}>
       <View style={{flex: 1}}>
-        {/* <View
+        <View
           style={{
             backgroundColor: '#4f647d',
             height: 50,
@@ -225,21 +209,21 @@ const CustomDrawerContent = (props) => {
             alignItems: 'center',
           }}>
           <Text style={{color: 'white'}}>Mi Perfil</Text>
-        </View> */}
-        {/*   <View>
+        </View>
+        <View>
           <DrawerItem
             label="Editar cuenta"
-            onPress={() => props.navigation.navigate('basket')}
+            onPress={() => props.navigation.navigate('editProfile')}
           />
           <DrawerItem
             label="Productos favoritos"
-            onPress={() => props.navigation.navigate('basket')}
+            onPress={() => props.navigation.navigate('favorite')}
           />
           <DrawerItem
             label="Pedidos"
-            onPress={() => props.navigation.navigate('basket')}
+            onPress={() => props.navigation.navigate('orders')}
           />
-        </View> */}
+        </View>
         <View
           style={{
             backgroundColor: '#4f647d',
@@ -251,7 +235,15 @@ const CustomDrawerContent = (props) => {
           <Text style={{color: 'white'}}>Tienda</Text>
         </View>
         <View>
-          <DrawerItemList {...props} />
+          {/* Se comenta para hacerlo todo con Drawer Item y poder adaptar el menu al estilo que quiero  <DrawerItemList {...props} /> */}
+          <DrawerItem
+            label="Productos"
+            onPress={() => props.navigation.navigate('products')}
+          />
+          <DrawerItem
+            label="Ofertas"
+            onPress={() => props.navigation.navigate('offers')}
+          />
         </View>
       </View>
 
@@ -267,20 +259,6 @@ const CustomDrawerContent = (props) => {
   );
 };
 
-/**
- * 
- * <Drawer.Screen
-              name="editProfile"
-              component={EditProfile}
-              options={({navigation, route}) => ({
-                headerTitle: 'Editar perfil',
-                headerRight: ({navigation}) => (
-                  <HeaderButtons navigation={navigation} />
-                ),
-              })}
-            />
- */
-
 const AppNavigation = ({isLogged}) => {
   const dispatch = useDispatch();
   return (
@@ -293,7 +271,7 @@ const AppNavigation = ({isLogged}) => {
             )}>
             <>
               <Drawer.Screen
-                name="Productos"
+                name="products"
                 component={ProductStack}
                 options={({navigation, route}) => ({
                   headerTitle: 'Productos',
@@ -301,7 +279,7 @@ const AppNavigation = ({isLogged}) => {
                 })}
               />
               <Drawer.Screen
-                name="Ofertas"
+                name="offers"
                 component={OffersStack}
                 initialParams={{isOffer: true}}
                 options={({navigation, route}) => ({
@@ -310,7 +288,7 @@ const AppNavigation = ({isLogged}) => {
                 })}
               />
               <Drawer.Screen
-                name="Editar perfil"
+                name="editProfile"
                 component={editProfileStack}
                 options={({navigation, route}) => ({
                   headerTitle: 'Editar perfil',
@@ -318,7 +296,7 @@ const AppNavigation = ({isLogged}) => {
                 })}
               />
               <Drawer.Screen
-                name="Pedidos"
+                name="orders"
                 component={orderStack}
                 options={({navigation, route}) => ({
                   headerTitle: 'Pedidos',
@@ -326,7 +304,7 @@ const AppNavigation = ({isLogged}) => {
                 })}
               />
               <Drawer.Screen
-                name="Productos favoritos"
+                name="favorite"
                 component={favoriteStack}
                 options={({navigation, route}) => ({
                   headerTitle: 'Favoritos',
