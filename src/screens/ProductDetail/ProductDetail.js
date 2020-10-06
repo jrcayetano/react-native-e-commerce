@@ -30,9 +30,8 @@ const ProductDetail = ({route, basketProductsList}) => {
   };
 
   useEffect(() => {
-    /* route.params.id */
-    setId('7');
-    getById('7').then(
+    setId(route.params.id);
+    getById(route.params.id).then(
       (response) => {
         console.log('response', response.data);
         setProduct(response.data);

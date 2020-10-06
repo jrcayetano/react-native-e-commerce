@@ -9,6 +9,7 @@ import Offers from '../screens/Offers';
 import ProductDetail from '../screens/ProductDetail/ProductDetail';
 import Profile from './../screens/Profile';
 import Orders from './../screens/Orders';
+import Favorite from './../screens/Favorite';
 import {connect} from 'react-redux';
 import {Text, Button, View} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
@@ -102,11 +103,20 @@ const UserLoggedNav = () => {
             <HeaderButtons navigation={navigation} />
           ),
         })}></Stack.Screen> */}
-      <Stack.Screen
+      {/*  <Stack.Screen
         name="orders"
         component={Orders}
         options={({navigation, route}) => ({
           headerTitle: 'Orders',
+          headerRight: ({navigation}) => (
+            <HeaderButtons navigation={navigation} />
+          ),
+        })}></Stack.Screen> */}
+      <Stack.Screen
+        name="favorite"
+        component={Favorite}
+        options={({navigation, route}) => ({
+          headerTitle: 'Favoritos',
           headerRight: ({navigation}) => (
             <HeaderButtons navigation={navigation} />
           ),
@@ -193,7 +203,7 @@ const AppNavigation = ({isLogged}) => {
         <Drawer.Navigator
           drawerContent={(props) => <CustomDrawerContent {...props} />}>
           <>
-            {/*  <Drawer.Screen
+            <Drawer.Screen
               name="products"
               component={ProductsNav}
               options={({navigation, route}) => ({
@@ -209,12 +219,32 @@ const AppNavigation = ({isLogged}) => {
                 headerTitle: 'offers',
                 headerRight: () => <HeaderButtons navigation={navigation} />,
               })}
-            /> */}
+            />
             <Drawer.Screen
               name="editProfile"
               component={UserLoggedNav}
               options={({navigation, route}) => ({
                 headerTitle: 'Editar perfil',
+                headerRight: ({navigation}) => (
+                  <HeaderButtons navigation={navigation} />
+                ),
+              })}
+            />
+            <Drawer.Screen
+              name="orders"
+              component={Orders}
+              options={({navigation, route}) => ({
+                headerTitle: 'Orders',
+                headerRight: ({navigation}) => (
+                  <HeaderButtons navigation={navigation} />
+                ),
+              })}
+            />
+            <Drawer.Screen
+              name="favorite"
+              component={Favorite}
+              options={({navigation, route}) => ({
+                headerTitle: 'Favoritos',
                 headerRight: ({navigation}) => (
                   <HeaderButtons navigation={navigation} />
                 ),

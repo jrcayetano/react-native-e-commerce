@@ -16,7 +16,7 @@ const OrderItem = ({product}) => {
         <Image
           style={orderItemStyle.image}
           resizeMode="contain"
-          source={require('./../../assets/images/no-image.png')}
+          source={{uri: product.image}}
         />
       </View>
       <View style={orderItemStyle.imageContainer}>

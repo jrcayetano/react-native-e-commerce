@@ -14,6 +14,9 @@ export const orderItemStyle = StyleSheet.create({
     backgroundColor: 'white',
     padding: '5%',
   },
+  infoContainer: {
+    flexWrap: 'wrap',
+  },
   name: {
     fontSize: 15,
     color: '#007bff',
@@ -26,5 +29,8 @@ export const orderItemStyle = StyleSheet.create({
     color: 'red',
     fontSize: 18,
     fontWeight: fontsApp.FONT_MEDIUM,
+  },
+  btnBuy: {
+    marginRight: 20,
   },
 });
