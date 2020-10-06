@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Button, TextInput, Text, View} from 'react-native';
 import {Formik} from 'formik';
 import {generalStyles} from './../../styles/General.style';
 import * as Yup from 'yup';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Input} from 'react-native-elements';
 
 const initialValues = {email: '', password: ''};
 
@@ -12,36 +14,57 @@ const validationSchema = Yup.object().shape({
 });
 
 const LoginForm = ({onSubmitForm}) => {
+  const [submitted, setSubmitted] = useState(false);
+
   return (
     <View style={generalStyles.form}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmitForm}>
-        {({handleChange, handleBlur, handleSubmit, errors, values}) => (
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          touched,
+          errors,
+          values,
+        }) => (
           <>
             <View style={generalStyles.formRow}>
-              <TextInput
-                style={generalStyles.input}
-                placeholder="email"
+              <Input
+                value={values.email}
+                placeholder="Email"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
-                value={values.email}
+                errorMessage={errors.email}
+                renderErrorMessage={
+                  (errors.email && touched.email) || submitted
+                }
+                leftIcon={<Icon name="envelope" size={20} color="#555" />}
               />
-              <Text style={{color: 'red'}}>{errors.email}</Text>
             </View>
             <View style={generalStyles.formRow}>
-              <TextInput
-                style={generalStyles.input}
-                placeholder="password"
+              <Input
+                value={values.password}
+                placeholder="Password"
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
-                value={values.password}
+                errorMessage={errors.password}
+                renderErrorMessage={
+                  (errors.password && touched.password) || submitted
+                }
+                leftIcon={<Icon name="key" size={20} color="#555" />}
               />
-              <Text style={{color: 'red'}}>{errors.password}</Text>
             </View>
             <View>
-              <Button onPress={handleSubmit} title="Entrar" />
+              <Button
+                onPress={(values) => {
+                  setSubmitted(true);
+                  handleSubmit(values);
+                }}
+                title="Entrar"
+              />
             </View>
           </>
         )}
