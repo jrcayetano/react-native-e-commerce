@@ -13,9 +13,6 @@ const Welcome = ({navigation}) => {
 
   return (
     <SafeAreaView style={welcomeStyles.container}>
-      <View>
-        <Text>aaa</Text>
-      </View>
       <View style={welcomeStyles.actionBar}>
         <Button
           style={welcomeStyles.accessButton}

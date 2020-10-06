@@ -10,7 +10,7 @@ import ProductDetail from '../screens/ProductDetail/ProductDetail';
 import Profile from './../screens/Profile';
 import Orders from './../screens/Orders';
 import Favorite from './../screens/Favorite';
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 import {Text, Button, View} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
 import BasketList from './../screens/BasketList';
@@ -20,6 +20,7 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import {logout} from './../state/actions/RootActions';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -259,7 +260,7 @@ const CustomDrawerContent = (props) => {
           activeTintColor={'white'}
           inactiveTintColor={'white'}
           label="Logout"
-          onPress={() => props.navigation.navigate('basket')}
+          onPress={() => props.dispatch(logout())}
         />
       </View>
     </DrawerContentScrollView>
@@ -281,55 +282,66 @@ const CustomDrawerContent = (props) => {
  */
 
 const AppNavigation = ({isLogged}) => {
+  const dispatch = useDispatch();
   return (
     <>
       <NavigationContainer>
-        <Drawer.Navigator
-          drawerContent={(props) => <CustomDrawerContent {...props} />}>
-          <>
-            <Drawer.Screen
-              name="Productos"
-              component={ProductStack}
-              options={({navigation, route}) => ({
-                headerTitle: 'Productos',
-                headerRight: () => <HeaderButtons navigation={navigation} />,
-              })}
-            />
-            <Drawer.Screen
-              name="Ofertas"
-              component={OffersStack}
-              initialParams={{isOffer: true}}
-              options={({navigation, route}) => ({
-                headerTitle: 'Ofertas',
-                headerRight: () => <HeaderButtons navigation={navigation} />,
-              })}
-            />
-            <Drawer.Screen
-              name="Editar perfil"
-              component={editProfileStack}
-              options={({navigation, route}) => ({
-                headerTitle: 'Editar perfil',
-                headerRight: () => <HeaderButtons navigation={navigation} />,
-              })}
-            />
-            <Drawer.Screen
-              name="Pedidos"
-              component={orderStack}
-              options={({navigation, route}) => ({
-                headerTitle: 'Pedidos',
-                headerRight: () => <HeaderButtons navigation={navigation} />,
-              })}
-            />
-            <Drawer.Screen
-              name="Productos favoritos"
-              component={favoriteStack}
-              options={({navigation, route}) => ({
-                headerTitle: 'Favoritos',
-                headerRight: () => <HeaderButtons navigation={navigation} />,
-              })}
-            />
-          </>
-        </Drawer.Navigator>
+        {isLogged ? (
+          <Drawer.Navigator
+            drawerContent={(props) => (
+              <CustomDrawerContent {...props} dispatch={dispatch} />
+            )}>
+            <>
+              <Drawer.Screen
+                name="Productos"
+                component={ProductStack}
+                options={({navigation, route}) => ({
+                  headerTitle: 'Productos',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+              <Drawer.Screen
+                name="Ofertas"
+                component={OffersStack}
+                initialParams={{isOffer: true}}
+                options={({navigation, route}) => ({
+                  headerTitle: 'Ofertas',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+              <Drawer.Screen
+                name="Editar perfil"
+                component={editProfileStack}
+                options={({navigation, route}) => ({
+                  headerTitle: 'Editar perfil',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+              <Drawer.Screen
+                name="Pedidos"
+                component={orderStack}
+                options={({navigation, route}) => ({
+                  headerTitle: 'Pedidos',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+              <Drawer.Screen
+                name="Productos favoritos"
+                component={favoriteStack}
+                options={({navigation, route}) => ({
+                  headerTitle: 'Favoritos',
+                  headerRight: () => <HeaderButtons navigation={navigation} />,
+                })}
+              />
+            </>
+          </Drawer.Navigator>
+        ) : (
+          <Stack.Navigator>
+            <Stack.Screen name="welcome" component={Welcome}></Stack.Screen>
+            <Stack.Screen name="login" component={Login} />
+            <Stack.Screen name="register" component={Register} />
+          </Stack.Navigator>
+        )}
       </NavigationContainer>
     </>
   );
