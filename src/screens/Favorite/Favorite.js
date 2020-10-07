@@ -81,8 +81,6 @@ const Favorite = ({favoriteList, basketProductsList}) => {
     return <View style={{borderWidth: 1, borderColor: '#efefef'}}></View>;
   };
 
-  const handleSearch = () => {};
-
   return (
     <SafeAreaView style={ordersStyle.container}>
       <SearchBar
@@ -90,14 +88,6 @@ const Favorite = ({favoriteList, basketProductsList}) => {
         onChangeText={(evnt) => handleFilterProduct(evnt)}
         value={searchTerm}
       />
-      {/* <TextInput
-        style={[
-          generalStyles.input,
-          {width: '80%', alignSelf: 'center', marginTop: 20, marginBottom: 10},
-        ]}
-        placeholder="Filtrado"
-        onChangeText={(evnt) => handleFilterProduct(evnt)}
-      /> */}
       <FlatList
         data={filterProduct}
         renderItem={renderItem}

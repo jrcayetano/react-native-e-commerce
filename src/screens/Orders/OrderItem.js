@@ -11,6 +11,7 @@ const OrderItem = ({product}) => {
     }
     return text;
   };
+
   return (
     <View
       style={[
@@ -18,7 +19,6 @@ const OrderItem = ({product}) => {
         generalStyles.vAlignRowCenter,
         orderItemStyle.item,
       ]}>
-      {/* <Text>{JSON.stringify(product)}</Text> */}
       <View style={orderItemStyle.imageContainer}>
         <Image
           style={orderItemStyle.image}

@@ -519,7 +519,6 @@ const styles = StyleSheet.create({
     height: 40,
     backgroundColor: 'rgba(255,165,0, 0.7)',
     borderRadius: 5,
-    // padding: 10,
   },
   textActive: {
     color: 'white',

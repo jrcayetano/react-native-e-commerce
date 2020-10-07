@@ -14,11 +14,6 @@ const Register = ({navigation}) => {
       .catch((error) => alert(error));
   }, []);
 
-  //  navigation.navigate('login');
-  /*   const handleSubmit = (formValues) => {
-    alert(JSON.stringify(formValues));
-  }; */
-
   const handleSubmit = (formValues) => {
     alert(JSON.stringify(formValues));
     register(formValues)

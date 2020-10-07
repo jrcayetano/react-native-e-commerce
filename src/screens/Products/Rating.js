@@ -32,9 +32,6 @@ const Rating = ({rating}) => {
               type="font-awesome"
               key={`star_${index}`}
             />
-            /*  <Text style={{marginRight: 3}} key={`star_${index}`}>
-              S
-            </Text> */
           ),
       )}
       {decimalPart > 0 && (

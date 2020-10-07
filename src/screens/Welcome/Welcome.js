@@ -53,20 +53,6 @@ const Welcome = ({navigation}) => {
             <Text style={{color: 'white', fontWeight: '700'}}>Registro</Text>
           </View>
         </TouchableOpacity>
-        {/* <Button
-          style={welcomeStyles.accessButton}
-          onPress={handleLogin}
-          title="Login"
-          color="#841584"
-          accessibilityLabel="Login button"
-        /> */}
-        {/* <Button
-          style={welcomeStyles.accessButton}
-          onPress={handleRegister}
-          title="Register"
-          color="#841584"
-          accessibilityLabel="Register button"
-        /> */}
       </View>
     </SafeAreaView>
   );
