@@ -135,6 +135,9 @@ const RegisterForm = ({states, onSubmitForm}) => {
                 onValueChange={(itemValue, itemIndex) => {
                   setFieldValue('state', itemValue);
                 }}>
+                <Picker.item
+                  label={'Selecciona una provincia'}
+                  value={null}></Picker.item>
                 {states &&
                   states.map((state, index) => (
                     <Picker.Item

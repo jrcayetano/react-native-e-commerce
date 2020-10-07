@@ -491,12 +491,24 @@ const AppNavigation = ({isLogged, currentMenu}) => {
               name="welcome"
               component={Welcome}
               options={({navigation, route}) => ({
+                headerBackground: () => (
+                  <ImageBackground
+                    source={require('./../assets/images/bg.jpg')}
+                    style={{width: '100%', height: '100%'}}
+                  />
+                ),
                 headerShown: false,
               })}></Stack.Screen>
             <Stack.Screen
               name="login"
               component={Login}
               options={({navigation, route}) => ({
+                headerBackground: () => (
+                  <ImageBackground
+                    source={require('./../assets/images/bg.jpg')}
+                    style={{width: '100%', height: '100%'}}
+                  />
+                ),
                 headerTitle: 'Login',
               })}></Stack.Screen>
 
@@ -504,6 +516,12 @@ const AppNavigation = ({isLogged, currentMenu}) => {
               name="register"
               component={Register}
               options={({navigation, route}) => ({
+                headerBackground: () => (
+                  <ImageBackground
+                    source={require('./../assets/images/bg.jpg')}
+                    style={{width: '100%', height: '100%'}}
+                  />
+                ),
                 headerTitle: 'Registro',
               })}
             />
