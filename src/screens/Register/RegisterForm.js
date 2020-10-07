@@ -10,7 +10,18 @@ import {
 } from './../../consts/patterns';
 import {Picker} from '@react-native-community/picker';
 
-const initialValues = {email: '', password: ''};
+const initialValues = {
+  username: '',
+  email: '',
+  name: '',
+  surname: '',
+  address: '',
+  city: '',
+  state: '',
+  zip: '',
+  password: '',
+  repassword: '',
+};
 
 const validationSchema = Yup.object().shape({
   username: Yup.string().required('Required'),
@@ -135,9 +146,7 @@ const RegisterForm = ({states, onSubmitForm}) => {
                 onValueChange={(itemValue, itemIndex) => {
                   setFieldValue('state', itemValue);
                 }}>
-                <Picker.item
-                  label={'Selecciona una provincia'}
-                  value={null}></Picker.item>
+                <Picker.Item label={'Selecciona una provincia'} value={null} />
                 {states &&
                   states.map((state, index) => (
                     <Picker.Item
