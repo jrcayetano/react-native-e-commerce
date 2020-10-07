@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {productsPageStyle} from './../../styles/Products.style';
 import {getProductList} from './../../services/Product.service';
@@ -7,15 +8,20 @@ import ProductCard from './ProductCard';
 import FAB from './../../components/FAB';
 import ProductFilter from './ProductFilter';
 import Loading from './../../components/Loading';
+import {MenuEnum} from './../../consts/MenuEnum';
+import {setMenu} from './../../state/actions/AppActions';
 
 const Products = ({navigation, route}) => {
   const [showModal, setShowModal] = useState(false);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
   const isOffer = false;
 
   useEffect(() => {
+    dispatch(setMenu(MenuEnum.PRODUCTS));
     setIsLoading(true);
     getProductList(null, isOffer)
       .finally(() => setIsLoading(false))

@@ -11,6 +11,7 @@ const FavoriteItem = ({product, onDelete, onBuy}) => {
     }
     return text;
   };
+
   return (
     <View
       style={[

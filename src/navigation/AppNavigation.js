@@ -11,7 +11,7 @@ import Profile from './../screens/Profile';
 import Orders from './../screens/Orders';
 import Favorite from './../screens/Favorite';
 import {connect, useDispatch} from 'react-redux';
-import {Text, Button, View} from 'react-native';
+import {Text, Button, View, ImageBackground, StyleSheet} from 'react-native';
 import HeaderButtons from './../components/HeaderButtons';
 import BasketList from './../screens/BasketList';
 import {
@@ -19,9 +19,13 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
+  DrawerContent,
 } from '@react-navigation/drawer';
 import ProfileInfo from './../components/ProfileInfo';
 import {logout} from './../state/actions/RootActions';
+import {Icon} from 'react-native-elements';
+import {MenuEnum} from './../consts/MenuEnum';
+import {setMenu} from './../state/actions/AppActions';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -34,6 +38,12 @@ const ProductStack = () => {
         component={Products}
         options={({navigation, route}) => ({
           headerTitle: 'Productos',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -42,6 +52,12 @@ const ProductStack = () => {
         component={ProductDetail}
         options={({navigation, route}) => ({
           headerTitle: 'Detalle',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -50,6 +66,12 @@ const ProductStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -59,6 +81,12 @@ const ProductStack = () => {
         initialParams={{isOffer: true}}
         options={({navigation, route}) => ({
           headerTitle: 'Offers',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -75,6 +103,12 @@ const OffersStack = () => {
         initialParams={{isOffer: true}}
         options={({navigation, route}) => ({
           headerTitle: 'Ofertas',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -83,6 +117,12 @@ const OffersStack = () => {
         component={ProductDetail}
         options={({navigation, route}) => ({
           headerTitle: 'Detalle',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -91,6 +131,12 @@ const OffersStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -106,6 +152,12 @@ const editProfileStack = () => {
         component={UserLoggedNav}
         options={({navigation, route}) => ({
           headerTitle: 'Editar perfil',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -114,6 +166,12 @@ const editProfileStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -129,6 +187,12 @@ const orderStack = () => {
         component={Orders}
         options={({navigation, route}) => ({
           headerTitle: 'Pedidos',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -137,6 +201,12 @@ const orderStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -152,6 +222,12 @@ const favoriteStack = () => {
         component={Favorite}
         options={({navigation, route}) => ({
           headerTitle: 'Favoritos',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -160,6 +236,12 @@ const favoriteStack = () => {
         component={BasketList}
         options={({navigation, route}) => ({
           headerTitle: 'Cesta',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}
       />
@@ -175,6 +257,12 @@ const UserLoggedNav = () => {
         component={Profile}
         options={({navigation, route}) => ({
           headerTitle: 'Editar perfil',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
       <Stack.Screen
@@ -182,6 +270,12 @@ const UserLoggedNav = () => {
         component={Orders}
         options={({navigation, route}) => ({
           headerTitle: 'Orders',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
       <Stack.Screen
@@ -189,6 +283,12 @@ const UserLoggedNav = () => {
         component={Favorite}
         options={({navigation, route}) => ({
           headerTitle: 'Favoritos',
+          headerBackground: () => (
+            <ImageBackground
+              source={require('./../assets/images/bg.jpg')}
+              style={{width: '100%', height: '100%'}}
+            />
+          ),
           headerRight: () => <HeaderButtons navigation={navigation} />,
         })}></Stack.Screen>
     </Stack.Navigator>
@@ -196,11 +296,13 @@ const UserLoggedNav = () => {
 };
 
 const CustomDrawerContent = (props) => {
+  console.log('Menu actual', props.currentMenu);
+
   return (
     <DrawerContentScrollView
       {...props}
       contentContainerStyle={{flex: 1, paddingTop: 0}}>
-      <View style={{padding: 10}}>
+      <View>
         <ProfileInfo />
       </View>
       <View style={{flex: 1}}>
@@ -216,16 +318,45 @@ const CustomDrawerContent = (props) => {
         </View>
         <View>
           <DrawerItem
+            style={[
+              props.currentMenu === MenuEnum.EDIT_PROFILE
+                ? styles.active
+                : null,
+            ]}
             label="Editar cuenta"
-            onPress={() => props.navigation.navigate('editProfile')}
+            icon={({focused, color, size}) => (
+              <Icon name="user" type="font-awesome" color="#555" size={20} />
+            )}
+            onPress={() => {
+              props.dispatch(setMenu(MenuEnum.EDIT_PROFILE));
+              props.navigation.navigate('editProfile');
+            }}
           />
           <DrawerItem
+            style={[
+              props.currentMenu === MenuEnum.FAVORITES ? styles.active : null,
+            ]}
             label="Productos favoritos"
-            onPress={() => props.navigation.navigate('favorite')}
+            icon={({focused, color, size}) => (
+              <Icon name="star" type="font-awesome" color="#555" size={20} />
+            )}
+            onPress={() => {
+              props.dispatch(setMenu(MenuEnum.FAVORITES));
+              props.navigation.navigate('favorite');
+            }}
           />
           <DrawerItem
+            style={[
+              props.currentMenu === MenuEnum.ORDERS ? styles.active : null,
+            ]}
             label="Pedidos"
-            onPress={() => props.navigation.navigate('orders')}
+            icon={({focused, color, size}) => (
+              <Icon name="cubes" type="font-awesome" color="#555" size={20} />
+            )}
+            onPress={() => {
+              props.dispatch(setMenu(MenuEnum.ORDERS));
+              props.navigation.navigate('orders');
+            }}
           />
         </View>
         <View
@@ -241,12 +372,30 @@ const CustomDrawerContent = (props) => {
         <View>
           {/* Se comenta para hacerlo todo con Drawer Item y poder adaptar el menu al estilo que quiero  <DrawerItemList {...props} /> */}
           <DrawerItem
+            style={[
+              props.currentMenu === MenuEnum.PRODUCTS ? styles.active : null,
+            ]}
             label="Productos"
-            onPress={() => props.navigation.navigate('products')}
+            icon={({focused, color, size}) => (
+              <Icon name="cube" type="font-awesome" color="#555" size={20} />
+            )}
+            onPress={() => {
+              props.dispatch(setMenu(MenuEnum.PRODUCTS));
+              props.navigation.navigate('products');
+            }}
           />
           <DrawerItem
+            style={[
+              props.currentMenu === MenuEnum.OFFERS ? styles.active : null,
+            ]}
             label="Ofertas"
-            onPress={() => props.navigation.navigate('offers')}
+            icon={({focused, color, size}) => (
+              <Icon name="percent" type="font-awesome" color="#555" size={20} />
+            )}
+            onPress={() => {
+              props.dispatch(setMenu(MenuEnum.OFFERS));
+              props.navigation.navigate('offers');
+            }}
           />
         </View>
       </View>
@@ -255,15 +404,26 @@ const CustomDrawerContent = (props) => {
         <DrawerItem
           activeTintColor={'white'}
           inactiveTintColor={'white'}
+          icon={({focused, color, size}) => (
+            <Icon
+              name="power-off"
+              type="font-awesome"
+              color="white"
+              size={20}
+            />
+          )}
           label="Logout"
-          onPress={() => props.dispatch(logout())}
+          onPress={() => {
+            props.dispatch(setMenu(MenuEnum.PRODUCTS));
+            props.dispatch(logout());
+          }}
         />
       </View>
     </DrawerContentScrollView>
   );
 };
 
-const AppNavigation = ({isLogged}) => {
+const AppNavigation = ({isLogged, currentMenu}) => {
   const dispatch = useDispatch();
   return (
     <>
@@ -271,7 +431,11 @@ const AppNavigation = ({isLogged}) => {
         {isLogged ? (
           <Drawer.Navigator
             drawerContent={(props) => (
-              <CustomDrawerContent {...props} dispatch={dispatch} />
+              <CustomDrawerContent
+                {...props}
+                dispatch={dispatch}
+                currentMenu={currentMenu}
+              />
             )}
             drawerContentOptions={{
               activeTintColor: '#e91e63',
@@ -350,8 +514,20 @@ const AppNavigation = ({isLogged}) => {
   );
 };
 
+const styles = StyleSheet.create({
+  active: {
+    height: 40,
+    backgroundColor: 'rgba(255,165,0, 0.7)',
+    borderRadius: 5,
+  },
+  textActive: {
+    color: 'white',
+  },
+});
+
 const mapStateToProps = (state) => ({
   isLogged: state.userLogged.isLogged || false,
+  currentMenu: state.app.selectedMenu,
 });
 
 export default connect(mapStateToProps)(React.memo(AppNavigation));
