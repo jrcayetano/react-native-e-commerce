@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1031737485065",
+    "firebase_url": "https://becommerce-9baa8.firebaseio.com",
+    "project_id": "becommerce-9baa8",
+    "storage_bucket": "becommerce-9baa8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031737485065:android:e963cd73d02130b22fd5d8",
+        "android_client_info": {
+          "package_name": "com.rnecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031737485065-bo860hinej7p290opbfucdmpgd2iebdv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rnecommerce",
+            "certificate_hash": "832981cb6fd5cd3e587255df02c0580c7316dcef"
+          }
+        },
+        {
+          "client_id": "1031737485065-fp7jnth49qce3n9curj19krjstabkosb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdlk3VvagD-IBiLzeFFKqwKfukXCIGNHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031737485065-fp7jnth49qce3n9curj19krjstabkosb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

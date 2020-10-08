@@ -23,6 +23,7 @@ import {
 } from '@react-navigation/drawer';
 import ProfileInfo from './../components/ProfileInfo';
 import {logout} from './../state/actions/RootActions';
+import {firebaseLogout} from './../services/Login.service';
 import {Icon} from 'react-native-elements';
 import {MenuEnum} from './../consts/MenuEnum';
 import {setMenu} from './../state/actions/AppActions';
@@ -296,8 +297,6 @@ const UserLoggedNav = () => {
 };
 
 const CustomDrawerContent = (props) => {
-  console.log('Menu actual', props.currentMenu);
-
   return (
     <DrawerContentScrollView
       {...props}
@@ -414,8 +413,12 @@ const CustomDrawerContent = (props) => {
           )}
           label="Logout"
           onPress={() => {
-            props.dispatch(setMenu(MenuEnum.PRODUCTS));
-            props.dispatch(logout());
+            firebaseLogout()
+              .then((response) => {
+                props.dispatch(setMenu(MenuEnum.PRODUCTS));
+                props.dispatch(logout());
+              })
+              .catch((error) => alert(error));
           }}
         />
       </View>

@@ -11,6 +11,7 @@ import {Avatar, Accessory} from 'react-native-elements';
 import {connect, useDispatch} from 'react-redux';
 
 const ProfileInfo = ({username}) => {
+  console.log(username);
   return (
     <View
       style={{
@@ -23,7 +24,7 @@ const ProfileInfo = ({username}) => {
         <Avatar
           size={70}
           rounded
-          title={username.slice(0, 2).toUpperCase()}
+          title={username ? username.slice(0, 2).toUpperCase() : ''}
           activeOpacity={0.7}
           containerStyle={{backgroundColor: '#555'}}
         />
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  username: state.userLogged.profile.username,
+  username: state.userLogged.username,
 });
 
 export default connect(mapStateToProps)(React.memo(ProfileInfo));

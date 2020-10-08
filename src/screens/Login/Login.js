@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SafeAreaView, View, Image, ScrollView} from 'react-native';
 import LoginForm from './LoginForm';
 import {loginPageStyle} from './../../styles/LoginPage.style';
@@ -11,6 +11,7 @@ import {
   SetUsername,
 } from './../../state/actions/UserLoggedActions';
 import {setToken} from './../../state/actions/AppActions';
+import auth from '@react-native-firebase/auth';
 
 const Login = ({selectedMenu}) => {
   const dispatch = useDispatch();
@@ -18,20 +19,43 @@ const Login = ({selectedMenu}) => {
   const handleSubmitForm = (formValues) => {
     login(formValues)
       .then((response) => {
-        getUserLoggedData(response.data, formValues);
+        saveLoguedUser(response);
+        // alert(response);
+        //  console.log(response);
+        // getUserLoggedData(response.data, formValues);
       })
-      .catch((error) => console.error(error.response.data));
+      .catch((error) => alert(error));
   };
 
   const getUserLoggedData = (response, formValues) => {
     if (response && response.accessToken) {
       getUserByEmail(formValues.email)
-        .then((userData) => {
-          saveLoggedUserDataInStore(response, userData.data);
-        })
+        .then((userData) => {})
         .catch((error) => {
           throw new Error(error);
         });
+    }
+  };
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, []);
+
+  const onAuthStateChanged = (user) => {
+    console.log('user logued', user);
+    saveLoguedUser(user);
+
+    // setUser(user);
+    // if (initializing) setInitializing(false);
+  };
+
+  const saveLoguedUser = (user) => {
+    if (user) {
+      dispatch(SetProfile(user));
+      dispatch(SetEmail(user.email));
+      dispatch(SetUsername(user.email));
+      dispatch(SetIsLogged());
     }
   };
 
@@ -41,6 +65,7 @@ const Login = ({selectedMenu}) => {
     dispatch(SetIsLogged());
     dispatch(SetEmail(userData[0].email));
     dispatch(SetUsername(userData[0].username));
+    dispatch(SetProfile(userData));
   };
 
   return (
